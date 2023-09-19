@@ -22,3 +22,15 @@ Content-Type: application/json
 {
   "prompt": "testando, alo, uhul"
 }
+
+###
+
+# @name genarate-ai-completion
+POST http://localhost:3333/ai/complete
+Content-Type: application/json
+
+{
+  "videoId": "c74fc7f0-c4f2-4dd9-9e07-9017300c335d",
+  "temperature": 0.1,
+  "template": "Gere um resumo sucinto da transcrição do video informada a seguir: '''{{transcription}}''' "
+}
