@@ -54,7 +54,7 @@ export function App() {
 						selecionado.
 					</p>
 				</div>
-				<aside className='w-80 space-y-6'>
+				<aside className='w-80 space-y-3'>
 					<VideoInputForm />
 
 					<Separator />
