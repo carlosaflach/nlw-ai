@@ -114,6 +114,7 @@ const VideoInputForm = () => {
 		<form className='space-y-6' onSubmit={handleUploadVideo}>
 			<label
 				htmlFor='video'
+				
 				className=' border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/20'>
 				{previewUrl ? (
 					<video
@@ -134,6 +135,7 @@ const VideoInputForm = () => {
 				accept='video/mp4'
 				className='sr-only'
 				onChange={handleFileSelected}
+				disabled={status !== 'waiting'}
 			/>
 
 			<Separator />

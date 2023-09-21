@@ -12,8 +12,14 @@ import {
 } from './components/ui/select';
 import { Slider } from './components/ui/slider';
 import VideoInputForm from './components/video-input-form';
+import PromptSelect from './components/propmt-select';
 
 export function App() {
+	const handlePromptSelected = (template: string) => {
+		console.log('template', template);
+	}
+
+
 	return (
 		<div className='min-h-screen flex flex-col'>
 			<div className='px-6 py-3 flex items-center justify-between border-b'>
@@ -62,17 +68,7 @@ export function App() {
 					<form className='space-y-6'>
 						<div className='space-y-2'>
 							<Label>Prompt</Label>
-							<Select>
-								<SelectTrigger>
-									<SelectValue placeholder='Selecione um prompt...' />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value='title'>Título do Youtube</SelectItem>
-									<SelectItem value='description'>
-										Descrição do Youtube
-									</SelectItem>
-								</SelectContent>
-							</Select>
+							<PromptSelect onPromptSelect={handlePromptSelected}/>
 							<span className='block text-xs text-muted-foreground italic '>
 								Você poderá customizar essa opção em breve
 							</span>
