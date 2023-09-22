@@ -13,10 +13,14 @@ import {
 import { Slider } from './components/ui/slider';
 import VideoInputForm from './components/video-input-form';
 import PromptSelect from './components/propmt-select';
+import { useState } from 'react';
 
 export function App() {
+	const [temperature, setTemperature] = useState(0.5);
+	const [videoId, setVideoId] = useState<string | null>(null);
 	const handlePromptSelected = (template: string) => {
 		console.log('template', template);
+		return template;
 	}
 
 
@@ -61,7 +65,7 @@ export function App() {
 					</p>
 				</div>
 				<aside className='w-80 space-y-3'>
-					<VideoInputForm />
+					<VideoInputForm onVideoUploaded={setVideoId} />
 
 					<Separator />
 
@@ -94,7 +98,7 @@ export function App() {
 						<div className='space-y-4'>
 							<Label>Temperatura</Label>
 
-							<Slider min={0} max={1} step={0.1} />
+							<Slider min={0} max={1} step={0.1} value={[temperature]} onValueChange={value => setTemperature(value[0])}/>
 							<span className='block text-xs text-muted-foreground italic leading-relaxed'>
 								Valores mais altos tendem a deixar o resultado mais criativo e
 								com possíveis erros.

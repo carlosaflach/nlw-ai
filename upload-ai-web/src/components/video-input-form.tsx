@@ -3,7 +3,7 @@ import { Label } from './ui/label';
 import { Separator } from './ui/separator';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
-import { ChangeEvent, FormEvent, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useMemo, useRef, useState } from 'react';
 import { getFFmpeg } from '@/lib/ffmpeg';
 import { fetchFile } from '@ffmpeg/util';
 import { api } from '@/lib/axios';
@@ -17,7 +17,11 @@ const statusMessages = {
 	success: 'Sucesso...',
 };
 
-const VideoInputForm = () => {
+interface IVideoInputForm {
+	onVideoUploaded: (videoId: string) => void;
+}
+
+const VideoInputForm: FC<IVideoInputForm> = ({onVideoUploaded}) => {
 	const [videoFile, setVideoFile] = useState<File | null>(null);
 	const [status, setStatus] = useState<Status>('waiting');
 	const promptInputRef = useRef<HTMLTextAreaElement>(null);
@@ -90,6 +94,7 @@ const VideoInputForm = () => {
 		await api.post(`/videos/${videoId}/transcription`, { prompt });
 
 		setStatus('success');
+		onVideoUploaded(videoId)
 	};
 
 	const handleFileSelected = (event: ChangeEvent<HTMLInputElement>) => {
